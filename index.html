@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>С Днём Рождения!</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 72 72%22><text y=%22.9em%22 font-size=%2260%22>🎂</text></svg>"
+    />
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+      <div class="preloader-content">
+        <h2>Preparing Something Special...</h2>
+        <div class="loading-bar">
+          <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+        <p class="loading-text" id="loadingText">Loading... 0%</p>
+      </div>
+    </div>
+
+    <!-- Card Overlay -->
+    <div class="card-overlay" id="cardOverlay">
+      <div class="birthday-card" id="birthdayCard">
+        <div class="card-front">
+          <div class="envelope-icon">💌</div>
+          <h1>Для моего любимого ребёнка!❤️</h1>
+          <p>Нажми, чтобы открыть свой подарок...</p>
+        </div>
+        <div class="card-back">
+          <h2>Счастливого 15-летия! <br />🎉🎉🎉</h2>
+          <p>
+            Родная, я тут приготовила для тебя кое-что...<br />
+            Надеюсь, что тебе понравится 😈
+          </p>
+          <button class="open-btn" id="openBtn">Start! 🎈</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Timeline Container -->
+    <div class="timeline-container" id="timelineContainer">
+      <div class="section-one">
+        <h1>Привет,<span>Виолетта</span></h1>
+      </div>
+
+      <div class="section-two">
+        <p>Очень люблю тебя, кстати) </p>
+      </div>
+
+      <div class="section-three">
+        <p>Это твой 15-й день рождения! :) 🎂</p>
+      </div>
+
+      <div class="section-four">
+        <div class="text-box">
+          <p class="hbd-chatbox">
+            15 это уже серьёзно😌
+ <br>
+Ровно 15 — время, когда уже многое умеешь сама, но ещё можно ничего не решать по-взрослому.
+<br>
+ Родная, прежде всего желаю тебе оставаться собой. Без масок, без "надо" и "так принято".
+<br>
+Пусть рядом будут те, кто понимает тебя без слов (например я😎). Пусть сбываются твои даже самые нелепые мечты.
+<br>
+Ошибаться — не страшно. Страшно — перестать пробовать. А ты сильнее, чем кажешься, намного сильнее, даже если иногда сомневаешься в этом.
+ <br>
+sС днём рождения, Виолетта!💕
+          </p>
+          <p class="fake-btn">Отправить 💌</p>
+        </div>
+      </div>
+
+      <div class="section-five">
+        <p class="idea-1">Это то, что я хотела сказать.</p>
+        <p class="idea-2">Но потом я поняла...</p>
+        <p class="idea-3">
+          Мне нужно сделать что-нибудь<br />
+          <strong>безбашенное</strong>
+        </p>
+        <p class="idea-4">Потому что...</p>
+        <p class="idea-5">ТЫ безбашенная ✨</p>
+        <p class="idea-6">
+          <span>2</span>
+          <span>3</span>
+        </p>
+      </div>
+
+      <div class="section-six">
+        <div class="hat">
+          <img src="./img/hat.svg" alt="birthday hat" />
+        </div>
+        <img
+          src="./img/friend.jpg"
+          alt="Sia"
+          class="profile-picture"
+          id="profilePic"
+        />
+        <div class="wish">
+          <h3 class="wish-hbd">С днём рождения,солнце!</h3>
+          <h5>
+            Надеюсь, что этот год принесёт тебе как можно больше позитивных эмоций и воспоминаний >⩊<
+          </h5>
+        </div>
+      </div>
+
+      <div class="section-cake">
+        <h2 class="cake-title">А сейчас... Загадай желание! 🌟</h2>
+        <div class="cake-wrapper">
+          <div class="realistic-cake" id="cake">
+            <div class="plate"></div>
+            <div class="layer layer-bottom"></div>
+            <div class="layer layer-middle"></div>
+            <div class="layer layer-top"></div>
+            <div class="icing"></div>
+            <div class="drip drip1"></div>
+            <div class="drip drip2"></div>
+            <div class="drip drip3"></div>
+          </div>
+        </div>
+        <p class="blow-instruction" id="blowInstruction">
+          🌬️ Подуй в микрофон, чтобы задуть свечи! 🌬️
+        </p>
+        <p class="blown-message" id="blownMessage">
+          🎊 Твоё желание принято! 🎊<br />
+          Надеюсь, что все твои желания когда-нибудь сбудутся! ✨
+        </p>
+      </div>
+
+      <div class="section-nine">
+        <p style="margin-bottom: 2rem">С Днём Рождения, Виолетта! 🎂💘</p>
+        <br /><br /><br />
+        <p>Ну так... тебе понравилось?) </p>
+        <p id="replay">Нажми сюда, если захочешь повторить! 🔄</p>
+      </div>
+    </div>
+
+    <!-- Music Control -->
+    <div class="music-control" id="musicControl">
+      <span id="musicIcon">🔊</span>
+    </div>
+
+    <!-- Hidden Audio -->
+    <audio id="bgMusic" loop="false">
+      <source src="./music/hbd.mpeg" type="audio/mpeg" />
+    </audio>
+
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="./script/index.js"></script>
+  </body>
+</html>
