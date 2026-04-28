@@ -2,46 +2,273 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С Днём Рождения!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>С Днём Рождения, Виолетта! 🎂</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 72 72%22><text y=%22.9em%22 font-size=%2260%22>🎂</text></svg>">
-    <link rel="stylesheet" href="style/style.css">
+    <style>
+        /* === ВСЕ СТИЛИ ВНУТРИ === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Preloader - теперь он работает правильно */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        .preloader-content { text-align: center; color: white; }
+        .loading-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: #ffd700;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* Card Overlay */
+        .card-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .birthday-card {
+            width: 400px;
+            height: 500px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            cursor: pointer;
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .card-front {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #333;
+            transform: rotateY(0deg);
+        }
+        .card-back {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        .birthday-card.open { transform: rotateY(180deg); }
+        .envelope-icon { font-size: 80px; margin-bottom: 20px; animation: bounce 1s infinite; }
+        .open-btn {
+            background: #ff6b6b;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+        .open-btn:hover { transform: scale(1.05); }
+
+        /* Timeline Container */
+        .timeline-container {
+            visibility: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        .section-one, .section-two, .section-three, .section-four, .section-five, .section-six, .section-cake, .section-nine {
+            margin-bottom: 80px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .section-one.visible, .section-two.visible, .section-three.visible, 
+        .section-four.visible, .section-five.visible, .section-six.visible, 
+        .section-cake.visible, .section-nine.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-one h1 { font-size: 4em; font-family: 'Dancing Script', cursive; }
+        .section-one span { color: #ffd700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .section-two p, .section-three p {
+            font-size: 1.5em;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+        .text-box {
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .hbd-chatbox { font-size: 1.2em; line-height: 1.8; margin-bottom: 20px; }
+        .fake-btn {
+            background: #ff7675;
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .fake-btn:hover { transform: scale(1.05); background: #ff6b6b; }
+        .section-five p { margin: 20px 0; font-size: 1.3em; }
+        .idea-3 { font-size: 1.8em !important; color: #ffd700; }
+        .idea-6 { font-size: 3em !important; font-weight: bold; }
+        .idea-6 span { display: inline-block; animation: bounce 0.5s infinite alternate; }
+        .section-six { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .profile-picture {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ffd700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: #ddd;
+        }
+        .hat img { width: 80px; animation: swing 2s infinite; }
+        .wish-hbd { font-family: 'Dancing Script', cursive; font-size: 2.5em; margin-bottom: 10px; }
+        .cake-title { margin-bottom: 30px; font-size: 2em; }
+        .cake-wrapper { display: flex; justify-content: center; margin: 40px 0; }
+        .realistic-cake {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            cursor: pointer;
+        }
+        .plate {
+            position: absolute;
+            bottom: 0;
+            width: 260px;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            left: 20px;
+        }
+        .layer-bottom { background: #8B4513; bottom: 60px; height: 50px; width: 240px; left: 30px; position: absolute; border-radius: 15px; }
+        .layer-middle { background: #D2691E; bottom: 100px; height: 45px; width: 220px; left: 40px; position: absolute; border-radius: 15px; }
+        .layer-top { background: #CD853F; bottom: 135px; height: 40px; width: 200px; left: 50px; position: absolute; border-radius: 15px; }
+        .icing { position: absolute; bottom: 170px; left: 50px; width: 200px; height: 25px; background: #fff0e0; border-radius: 20px; }
+        .drip { position: absolute; background: #fff0e0; width: 20px; height: 30px; border-radius: 10px; bottom: 165px; }
+        .drip1 { left: 70px; } .drip2 { left: 140px; } .drip3 { left: 210px; }
+        .blow-instruction { font-size: 1.2em; background: rgba(255,255,255,0.2); display: inline-block; padding: 10px 20px; border-radius: 50px; margin-top: 20px; }
+        .blown-message { display: none; margin-top: 20px; color: #ffd700; font-size: 1.2em; }
+        #replay { cursor: pointer; color: #ffd700; text-decoration: underline; margin-top: 50px; }
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+        .music-control:hover { transform: scale(1.1); }
+        #musicIcon { font-size: 24px; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes swing { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+        @media (max-width: 600px) {
+            .birthday-card { width: 320px; height: 450px; }
+            .section-one h1 { font-size: 2.5em; }
+            .profile-picture { width: 200px; height: 200px; }
+            .realistic-cake { transform: scale(0.8); }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <h2>Готовим сюрприз...</h2>
+            <div class="loading-bar"><div class="loading-progress" id="loadingProgress"></div></div>
+            <p class="loading-text" id="loadingText">Загрузка... 0%</p>
+        </div>
+    </div>
 
     <!-- Card Overlay -->
     <div class="card-overlay" id="cardOverlay">
         <div class="birthday-card" id="birthdayCard">
             <div class="card-front">
                 <div class="envelope-icon">💌</div>
-                <h1>Для моего любимого ребёнка!❤️</h1>
-                <p>Нажми, чтобы открыть свой подарок...</p>
+                <h1>Для моей любимой подруги!❤️</h1>
+                <p>Нажми, чтобы открыть...</p>
             </div>
             <div class="card-back">
-                <h2>Счастливого 15-летия! <br>🎉🎉🎉</h2>
-                <p>Родная, я тут приготовила для тебя кое-что...<br>Надеюсь, что тебе понравится 😈</p>
-                <button class="open-btn" id="openBtn">Start! 🎈</button>
+                <h2>С 15-летием! 🎉🎉🎉</h2>
+                <p>Я тут кое-что для тебя приготовила...<br>Надеюсь, тебе понравится 😊</p>
+                <button class="open-btn" id="openBtn">Открыть! 🎈</button>
             </div>
         </div>
     </div>
 
     <!-- Main Timeline Container -->
     <div class="timeline-container" id="timelineContainer">
-        <div class="section-one">
-            <h1>Привет,<span>Виолетта</span></h1>
-        </div>
-        <div class="section-two"><p>Очень люблю тебя, кстати)</p></div>
-        <div class="section-three"><p>Это твой 15-й день рождения! :) 🎂</p></div>
+        <div class="section-one"><h1>Привет, <span>Виолетта</span>!</h1></div>
+        <div class="section-two"><p>Очень люблю тебя, кстати) 💕</p></div>
+        <div class="section-three"><p>Это твой 15-й день рождения! 🎂</p></div>
         <div class="section-four">
             <div class="text-box">
                 <p class="hbd-chatbox">
-                    15 это уже серьёзно😌<br>
-                    Ровно 15 — время, когда уже многое умеешь сама, но ещё можно ничего не решать по-взрослому.<br>
+                    15 — это уже серьёзно 😌<br>
+                    Ровно 15 — время, когда уже многое умеешь сама, но ещё можно ничего не решать по-взрослому.<br><br>
                     Родная, прежде всего желаю тебе оставаться собой. Без масок, без "надо" и "так принято".<br>
-                    Пусть рядом будут те, кто понимает тебя без слов (например я😎). Пусть сбываются твои даже самые нелепые мечты.<br>
-                    Ошибаться — не страшно. Страшно — перестать пробовать. А ты сильнее, чем кажешься, намного сильнее, даже если иногда сомневаешься в этом.<br>
-                    С днём рождения, Виолетта!💕
+                    Пусть рядом будут те, кто понимает тебя без слов (например, я 😎). Пусть сбываются твои даже самые нелепые мечты.<br>
+                    Ошибаться — не страшно. Страшно — перестать пробовать. А ты сильнее, чем кажешься. Намного сильнее, даже если иногда сомневаешься в этом.<br><br>
+                    С днём рождения, Виолетта! 💕
                 </p>
                 <p class="fake-btn">Отправить 💌</p>
             </div>
@@ -55,59 +282,142 @@
             <p class="idea-6"><span>1</span><span>5</span></p>
         </div>
         <div class="section-six">
-            <div class="hat"><img src="img/hat.svg" alt="birthday hat"></div>
-            <img src="img/friend.jpg" alt="Violetta" class="profile-picture" id="profilePic">
+            <div class="hat"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23FF69B4' d='M50,15 L70,40 L30,40 Z'/%3E%3Ccircle fill='%23FFD700' cx='50' cy='35' r='8'/%3E%3Crect x='45' y='40' width='10' height='25' fill='%238B4513'/%3E%3C/svg%3E" alt="birthday hat"></div>
+            <div class="profile-picture" id="profilePic">🎂</div>
             <div class="wish">
                 <h3 class="wish-hbd">С днём рождения, солнце!</h3>
-                <h5>Надеюсь, что этот год принесёт тебе как можно больше позитивных эмоций и воспоминаний >⩊<</h5>
+                <h5>Надеюсь, этот год принесёт тебе много позитива и крутых воспоминаний >⩊<</h5>
             </div>
         </div>
         <div class="section-cake">
             <h2 class="cake-title">А сейчас... Загадай желание! 🌟</h2>
-            <div class="cake-wrapper">
-                <div class="realistic-cake" id="cake">
-                    <div class="plate"></div><div class="layer layer-bottom"></div>
-                    <div class="layer layer-middle"></div><div class="layer layer-top"></div>
-                    <div class="icing"></div>
-                    <div class="drip drip1"></div><div class="drip drip2"></div><div class="drip drip3"></div>
-                </div>
-            </div>
+            <div class="cake-wrapper"><div class="realistic-cake" id="cake"><div class="plate"></div><div class="layer-bottom"></div><div class="layer-middle"></div><div class="layer-top"></div><div class="icing"></div><div class="drip drip1"></div><div class="drip drip2"></div><div class="drip drip3"></div></div></div>
             <p class="blow-instruction" id="blowInstruction">🌬️ Подуй в микрофон, чтобы задуть свечи! 🌬️</p>
-            <p class="blown-message" id="blownMessage">🎊 Твоё желание принято! 🎊<br>Надеюсь, что все твои желания когда-нибудь сбудутся! ✨</p>
+            <p class="blown-message" id="blownMessage">🎊 Твоё желание принято! 🎊<br>Пусть всё задуманное сбудется! ✨</p>
         </div>
         <div class="section-nine">
             <p style="margin-bottom: 2rem">С Днём Рождения, Виолетта! 🎂💘</p>
-            <p>Ну так... тебе понравилось?)</p>
+            <p>Ну как, тебе понравилось?)</p>
             <p id="replay">Нажми сюда, если захочешь повторить! 🔄</p>
         </div>
     </div>
 
-    <!-- Music Control -->
     <div class="music-control" id="musicControl"><span id="musicIcon">🔊</span></div>
-    <audio id="bgMusic" loop><source src="music/hbd.mp3" type="audio/mpeg"></audio>
+    <audio id="bgMusic" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"></audio>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-    <script src="script/index.js"></script>
     <script>
-        // Простой скрипт, чтобы убрать прелоадер, если он вдруг остался, и открыть конверт
-        window.addEventListener('load', function() {
-            // Убираем прелоадер, если он есть
-            var preloader = document.querySelector('.preloader');
-            if(preloader) preloader.style.display = 'none';
-            
-            // Показываем основной контент
-            var timeline = document.getElementById('timelineContainer');
-            if(timeline) timeline.style.visibility = 'visible';
-            
-            // Логика открытия конверта
-            var cardOverlay = document.getElementById('cardOverlay');
-            var openBtn = document.getElementById('openBtn');
-            if(openBtn && cardOverlay) {
-                openBtn.addEventListener('click', function() {
-                    cardOverlay.style.display = 'none';
+        // === ВЕСЬ СКРИПТ ВНУТРИ ===
+        (function() {
+            // Preloader logic
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 10) + 1;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        const preloader = document.getElementById('preloader');
+                        if(preloader) preloader.style.display = 'none';
+                    }, 200);
+                }
+                const progElem = document.getElementById('loadingProgress');
+                const textElem = document.getElementById('loadingText');
+                if(progElem) progElem.style.width = progress + '%';
+                if(textElem) textElem.innerText = `Загрузка... ${progress}%`;
+            }, 200);
+
+            // GSAP Animations
+            const sections = ['.section-one', '.section-two', '.section-three', '.section-four', '.section-five', '.section-six', '.section-cake', '.section-nine'];
+            let currentIndex = 0;
+            function showNextSection() {
+                if(currentIndex < sections.length) {
+                    const elem = document.querySelector(sections[currentIndex]);
+                    if(elem) elem.classList.add('visible');
+                    currentIndex++;
+                    setTimeout(showNextSection, 800);
+                }
+            }
+
+            // Card logic
+            const card = document.getElementById('birthdayCard');
+            const openBtn = document.getElementById('openBtn');
+            const cardOverlay = document.getElementById('cardOverlay');
+            const timeline = document.getElementById('timelineContainer');
+
+            if(openBtn && card && cardOverlay && timeline) {
+                openBtn.addEventListener('click', () => {
+                    card.classList.add('open');
+                    setTimeout(() => {
+                        cardOverlay.style.display = 'none';
+                        timeline.style.visibility = 'visible';
+                        showNextSection();
+                        // Music autoplay attempt
+                        const audio = document.getElementById('bgMusic');
+                        if(audio) audio.play().catch(e => console.log("Audio play failed:", e));
+                    }, 800);
                 });
             }
-        });
+
+            // Cake blowing logic
+            const blowInstruction = document.getElementById('blowInstruction');
+            const blownMessage = document.getElementById('blownMessage');
+            const cake = document.getElementById('cake');
+            
+            function blowOutCandles() {
+                if(blowInstruction && blownMessage) {
+                    blowInstruction.style.display = 'none';
+                    blownMessage.style.display = 'block';
+                }
+                // Simple confetti
+                for(let i=0; i<50; i++) {
+                    let conf = document.createElement('div');
+                    conf.innerText = ['🎉', '🎊', '✨', '💖', '🎈'][Math.floor(Math.random()*5)];
+                    conf.style.position = 'fixed';
+                    conf.style.left = Math.random() * 100 + '%';
+                    conf.style.top = '0px';
+                    conf.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                    conf.style.pointerEvents = 'none';
+                    conf.style.zIndex = '1000';
+                    document.body.appendChild(conf);
+                    conf.animate([{ transform: 'translateY(0px)', opacity: 1 }, { transform: `translateY(${window.innerHeight}px)`, opacity: 0 }], { duration: 1500, easing: 'cubic-bezier(0.2, 0.9, 0.4, 1)' }).onfinish = () => conf.remove();
+                }
+            }
+            
+            if(cake) {
+                cake.addEventListener('click', blowOutCandles);
+            }
+            if(blowInstruction) {
+                blowInstruction.addEventListener('click', blowOutCandles);
+            }
+
+            // Replay button
+            const replayBtn = document.getElementById('replay');
+            if(replayBtn) {
+                replayBtn.addEventListener('click', () => {
+                    window.location.reload();
+                });
+            }
+
+            // Music control
+            const musicControl = document.getElementById('musicControl');
+            const musicIcon = document.getElementById('musicIcon');
+            const audio = document.getElementById('bgMusic');
+            let isPlaying = false;
+            
+            if(musicControl && audio) {
+                musicControl.addEventListener('click', () => {
+                    if(isPlaying) {
+                        audio.pause();
+                        musicIcon.innerText = '🔇';
+                    } else {
+                        audio.play().catch(e => console.log(e));
+                        musicIcon.innerText = '🔊';
+                    }
+                    isPlaying = !isPlaying;
+                });
+            }
+        })();
     </script>
 </body>
 </html>
