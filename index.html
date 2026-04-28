@@ -6,7 +6,6 @@
     <title>С Днём Рождения, Виолетта! 🎂</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* === ВСЕ СТИЛИ ВНУТРИ === */
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +20,6 @@
             min-height: 100vh;
         }
 
-        /* Preloader - теперь он работает правильно */
         .preloader {
             position: fixed;
             top: 0;
@@ -52,7 +50,6 @@
             transition: width 0.3s ease;
         }
 
-        /* Card Overlay */
         .card-overlay {
             position: fixed;
             top: 0;
@@ -112,7 +109,6 @@
         }
         .open-btn:hover { transform: scale(1.05); }
 
-        /* Timeline Container */
         .timeline-container {
             visibility: hidden;
             max-width: 800px;
@@ -171,6 +167,10 @@
             border: 5px solid #ffd700;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
         }
         .hat img { width: 80px; animation: swing 2s infinite; }
         .wish-hbd { font-family: 'Dancing Script', cursive; font-size: 2.5em; margin-bottom: 10px; }
@@ -197,7 +197,7 @@
         .icing { position: absolute; bottom: 170px; left: 50px; width: 200px; height: 25px; background: #fff0e0; border-radius: 20px; }
         .drip { position: absolute; background: #fff0e0; width: 20px; height: 30px; border-radius: 10px; bottom: 165px; }
         .drip1 { left: 70px; } .drip2 { left: 140px; } .drip3 { left: 210px; }
-        .blow-instruction { font-size: 1.2em; background: rgba(255,255,255,0.2); display: inline-block; padding: 10px 20px; border-radius: 50px; margin-top: 20px; }
+        .blow-instruction { font-size: 1.2em; background: rgba(255,255,255,0.2); display: inline-block; padding: 10px 20px; border-radius: 50px; margin-top: 20px; cursor: pointer; }
         .blown-message { display: none; margin-top: 20px; color: #ffd700; font-size: 1.2em; }
         #replay { cursor: pointer; color: #ffd700; text-decoration: underline; margin-top: 50px; }
         .music-control {
@@ -230,7 +230,6 @@
 </head>
 <body>
 
-    <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="preloader-content">
             <h2>Готовим сюрприз...</h2>
@@ -239,7 +238,6 @@
         </div>
     </div>
 
-    <!-- Card Overlay -->
     <div class="card-overlay" id="cardOverlay">
         <div class="birthday-card" id="birthdayCard">
             <div class="card-front">
@@ -255,7 +253,6 @@
         </div>
     </div>
 
-    <!-- Main Timeline Container -->
     <div class="timeline-container" id="timelineContainer">
         <div class="section-one"><h1>Привет, <span>Виолетта</span>!</h1></div>
         <div class="section-two"><p>Очень люблю тебя, кстати) 💕</p></div>
@@ -307,9 +304,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script>
-        // === ВЕСЬ СКРИПТ ВНУТРИ ===
         (function() {
-            // Preloader logic
+            // Preloader
             let progress = 0;
             const interval = setInterval(() => {
                 progress += Math.floor(Math.random() * 10) + 1;
@@ -327,7 +323,7 @@
                 if(textElem) textElem.innerText = `Загрузка... ${progress}%`;
             }, 200);
 
-            // GSAP Animations
+            // Анимация секций
             const sections = ['.section-one', '.section-two', '.section-three', '.section-four', '.section-five', '.section-six', '.section-cake', '.section-nine'];
             let currentIndex = 0;
             function showNextSection() {
@@ -339,27 +335,38 @@
                 }
             }
 
-            // Card logic
-            const card = document.getElementById('birthdayCard');
+            // ОТКРЫТИЕ КОНВЕРТА - ИСПРАВЛЕНО!
             const openBtn = document.getElementById('openBtn');
+            const card = document.getElementById('birthdayCard');
             const cardOverlay = document.getElementById('cardOverlay');
             const timeline = document.getElementById('timelineContainer');
 
-            if(openBtn && card && cardOverlay && timeline) {
-                openBtn.addEventListener('click', () => {
-                    card.classList.add('open');
+            function openCard() {
+                if(card) card.classList.add('open');
+                if(cardOverlay && timeline) {
                     setTimeout(() => {
                         cardOverlay.style.display = 'none';
                         timeline.style.visibility = 'visible';
                         showNextSection();
-                        // Music autoplay attempt
                         const audio = document.getElementById('bgMusic');
                         if(audio) audio.play().catch(e => console.log("Audio play failed:", e));
                     }, 800);
+                }
+            }
+
+            if(openBtn) {
+                openBtn.addEventListener('click', openCard);
+            }
+            
+            if(card) {
+                card.addEventListener('click', function(e) {
+                    if(e.target !== openBtn) {
+                        openCard();
+                    }
                 });
             }
 
-            // Cake blowing logic
+            // Задувание свечей
             const blowInstruction = document.getElementById('blowInstruction');
             const blownMessage = document.getElementById('blownMessage');
             const cake = document.getElementById('cake');
@@ -369,7 +376,6 @@
                     blowInstruction.style.display = 'none';
                     blownMessage.style.display = 'block';
                 }
-                // Simple confetti
                 for(let i=0; i<50; i++) {
                     let conf = document.createElement('div');
                     conf.innerText = ['🎉', '🎊', '✨', '💖', '🎈'][Math.floor(Math.random()*5)];
@@ -391,7 +397,7 @@
                 blowInstruction.addEventListener('click', blowOutCandles);
             }
 
-            // Replay button
+            // Кнопка повтора
             const replayBtn = document.getElementById('replay');
             if(replayBtn) {
                 replayBtn.addEventListener('click', () => {
@@ -399,7 +405,7 @@
                 });
             }
 
-            // Music control
+            // Управление музыкой
             const musicControl = document.getElementById('musicControl');
             const musicIcon = document.getElementById('musicIcon');
             const audio = document.getElementById('bgMusic');
