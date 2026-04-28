@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>С Днём Рождения, Виолетта! 🎂</title>
+    <title>С Днём Рождения, солнце! 🎂</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -154,7 +154,13 @@
         .hat img { width: 80px; animation: swing 2s infinite; }
         .wish-hbd { font-family: 'Dancing Script', cursive; font-size: 2.5em; margin-bottom: 10px; }
         .cake-title { margin-bottom: 30px; font-size: 2em; }
-        .cake-wrapper { display: flex; justify-content: center; margin: 40px 0; }
+        .cake-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            position: relative;
+        }
+        /* Стили для торта со свечами */
         .realistic-cake {
             position: relative;
             width: 300px;
@@ -170,12 +176,92 @@
             border-radius: 10px;
             left: 20px;
         }
-        .layer-bottom { background: #8B4513; bottom: 60px; height: 50px; width: 240px; left: 30px; position: absolute; border-radius: 15px; }
-        .layer-middle { background: #D2691E; bottom: 100px; height: 45px; width: 220px; left: 40px; position: absolute; border-radius: 15px; }
-        .layer-top { background: #CD853F; bottom: 135px; height: 40px; width: 200px; left: 50px; position: absolute; border-radius: 15px; }
-        .icing { position: absolute; bottom: 170px; left: 50px; width: 200px; height: 25px; background: #fff0e0; border-radius: 20px; }
-        .drip { position: absolute; background: #fff0e0; width: 20px; height: 30px; border-radius: 10px; bottom: 165px; }
-        .drip1 { left: 70px; } .drip2 { left: 140px; } .drip3 { left: 210px; }
+        .layer-bottom {
+            background: #8B4513;
+            bottom: 60px;
+            height: 50px;
+            width: 240px;
+            left: 30px;
+            position: absolute;
+            border-radius: 15px;
+        }
+        .layer-middle {
+            background: #D2691E;
+            bottom: 100px;
+            height: 45px;
+            width: 220px;
+            left: 40px;
+            position: absolute;
+            border-radius: 15px;
+        }
+        .layer-top {
+            background: #CD853F;
+            bottom: 135px;
+            height: 40px;
+            width: 200px;
+            left: 50px;
+            position: absolute;
+            border-radius: 15px;
+        }
+        .icing {
+            position: absolute;
+            bottom: 170px;
+            left: 50px;
+            width: 200px;
+            height: 25px;
+            background: #fff0e0;
+            border-radius: 20px;
+        }
+        /* СВЕЧИ */
+        .candles-container {
+            position: absolute;
+            bottom: 195px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+        }
+        .candle {
+            position: relative;
+            width: 12px;
+            height: 35px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 6px 6px 3px 3px;
+            animation: flicker 0.1s infinite alternate;
+        }
+        .candle-wick {
+            position: absolute;
+            top: -5px;
+            left: 4px;
+            width: 4px;
+            height: 8px;
+            background: #333;
+            border-radius: 2px;
+        }
+        .flame {
+            position: absolute;
+            top: -15px;
+            left: -2px;
+            width: 16px;
+            height: 20px;
+            background: radial-gradient(circle, #ffdd00, #ff6600);
+            border-radius: 50% 50% 30% 30%;
+            transform-origin: bottom;
+            animation: flameFlicker 0.15s infinite alternate;
+            box-shadow: 0 0 10px #ff9900;
+        }
+        .candle.extinguished .flame {
+            display: none;
+        }
+        @keyframes flicker {
+            0% { opacity: 1; transform: scaleY(1); }
+            100% { opacity: 0.9; transform: scaleY(0.98); }
+        }
+        @keyframes flameFlicker {
+            0% { transform: scale(1) translateY(0); opacity: 1; }
+            100% { transform: scale(0.95, 1.05) translateY(-2px); opacity: 0.9; }
+        }
         .blow-instruction {
             font-size: 1.2em;
             background: rgba(255,255,255,0.2);
@@ -207,6 +293,7 @@
             .birthday-card { width: 320px; height: 450px; }
             .section-one h1 { font-size: 2.5em; }
             .profile-picture { width: 200px; height: 200px; }
+            .candles-container { bottom: 190px; gap: 15px; }
         }
     </style>
 </head>
