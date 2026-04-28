@@ -6,12 +6,7 @@
     <title>С Днём Рождения, Виолетта! 🎂</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: "Poppins", sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -19,43 +14,34 @@
             overflow-x: hidden;
             min-height: 100vh;
         }
-
         .preloader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
         }
         .preloader-content { text-align: center; color: white; }
         .loading-bar {
-            width: 300px;
-            height: 6px;
+            width: 300px; height: 6px;
             background: rgba(255,255,255,0.3);
             border-radius: 10px;
             margin: 20px auto;
             overflow: hidden;
         }
         .loading-progress {
-            width: 0%;
-            height: 100%;
+            width: 0%; height: 100%;
             background: #ffd700;
             border-radius: 10px;
             transition: width 0.3s ease;
         }
-
         .card-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0,0,0,0.8);
             display: flex;
             justify-content: center;
@@ -64,8 +50,7 @@
             backdrop-filter: blur(5px);
         }
         .birthday-card {
-            width: 400px;
-            height: 500px;
+            width: 400px; height: 500px;
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.8s;
@@ -73,8 +58,7 @@
         }
         .card-front, .card-back {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             backface-visibility: hidden;
             border-radius: 20px;
             display: flex;
@@ -108,7 +92,6 @@
             transition: transform 0.3s;
         }
         .open-btn:hover { transform: scale(1.05); }
-
         .timeline-container {
             visibility: hidden;
             max-width: 800px;
@@ -167,10 +150,6 @@
             border: 5px solid #ffd700;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             background: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
         }
         .hat img { width: 80px; animation: swing 2s infinite; }
         .wish-hbd { font-family: 'Dancing Script', cursive; font-size: 2.5em; margin-bottom: 10px; }
@@ -197,7 +176,15 @@
         .icing { position: absolute; bottom: 170px; left: 50px; width: 200px; height: 25px; background: #fff0e0; border-radius: 20px; }
         .drip { position: absolute; background: #fff0e0; width: 20px; height: 30px; border-radius: 10px; bottom: 165px; }
         .drip1 { left: 70px; } .drip2 { left: 140px; } .drip3 { left: 210px; }
-        .blow-instruction { font-size: 1.2em; background: rgba(255,255,255,0.2); display: inline-block; padding: 10px 20px; border-radius: 50px; margin-top: 20px; cursor: pointer; }
+        .blow-instruction {
+            font-size: 1.2em;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
         .blown-message { display: none; margin-top: 20px; color: #ffd700; font-size: 1.2em; }
         #replay { cursor: pointer; color: #ffd700; text-decoration: underline; margin-top: 50px; }
         .music-control {
@@ -205,8 +192,7 @@
             bottom: 20px;
             right: 20px;
             background: rgba(0,0,0,0.7);
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -214,17 +200,13 @@
             cursor: pointer;
             z-index: 100;
             backdrop-filter: blur(5px);
-            transition: transform 0.3s;
         }
-        .music-control:hover { transform: scale(1.1); }
-        #musicIcon { font-size: 24px; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
         @keyframes swing { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
         @media (max-width: 600px) {
             .birthday-card { width: 320px; height: 450px; }
             .section-one h1 { font-size: 2.5em; }
             .profile-picture { width: 200px; height: 200px; }
-            .realistic-cake { transform: scale(0.8); }
         }
     </style>
 </head>
@@ -280,7 +262,7 @@
         </div>
         <div class="section-six">
             <div class="hat"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23FF69B4' d='M50,15 L70,40 L30,40 Z'/%3E%3Ccircle fill='%23FFD700' cx='50' cy='35' r='8'/%3E%3Crect x='45' y='40' width='10' height='25' fill='%238B4513'/%3E%3C/svg%3E" alt="birthday hat"></div>
-            <div class="profile-picture" id="profilePic">🎂</div>
+            <img src="violetta.jpg" alt="Виолетта" class="profile-picture" id="profilePic">
             <div class="wish">
                 <h3 class="wish-hbd">С днём рождения, солнце!</h3>
                 <h5>Надеюсь, этот год принесёт тебе много позитива и крутых воспоминаний >⩊<</h5>
@@ -300,7 +282,7 @@
     </div>
 
     <div class="music-control" id="musicControl"><span id="musicIcon">🔊</span></div>
-    <audio id="bgMusic" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"></audio>
+    <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script>
@@ -335,7 +317,7 @@
                 }
             }
 
-            // ОТКРЫТИЕ КОНВЕРТА - ИСПРАВЛЕНО!
+            // Открытие конверта
             const openBtn = document.getElementById('openBtn');
             const card = document.getElementById('birthdayCard');
             const cardOverlay = document.getElementById('cardOverlay');
@@ -354,28 +336,69 @@
                 }
             }
 
-            if(openBtn) {
-                openBtn.addEventListener('click', openCard);
-            }
-            
-            if(card) {
-                card.addEventListener('click', function(e) {
-                    if(e.target !== openBtn) {
-                        openCard();
-                    }
-                });
-            }
+            if(openBtn) openBtn.addEventListener('click', openCard);
+            if(card) card.addEventListener('click', (e) => { if(e.target !== openBtn) openCard(); });
 
-            // Задувание свечей
+            // === ЗАДУВАНИЕ СВЕЧЕЙ С МИКРОФОНОМ ===
             const blowInstruction = document.getElementById('blowInstruction');
             const blownMessage = document.getElementById('blownMessage');
-            const cake = document.getElementById('cake');
+            const cakeEl = document.getElementById('cake');
+            
+            let blowDetected = false;
+            let mediaStream = null;
+            
+            function startMicrophoneDetection() {
+                if (blowDetected) return;
+                
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        mediaStream = stream;
+                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        const source = audioContext.createMediaStreamSource(stream);
+                        const analyser = audioContext.createAnalyser();
+                        analyser.fftSize = 256;
+                        source.connect(analyser);
+                        
+                        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+                        
+                        function checkBlow() {
+                            if (blowDetected) return;
+                            analyser.getByteFrequencyData(dataArray);
+                            let sum = 0;
+                            for (let i = 0; i < dataArray.length; i++) {
+                                sum += dataArray[i];
+                            }
+                            let average = sum / dataArray.length;
+                            
+                            // Если громкость выше порога — задули свечи
+                            if (average > 40) {
+                                blowDetected = true;
+                                blowOutCandles();
+                                if (mediaStream) {
+                                    mediaStream.getTracks().forEach(track => track.stop());
+                                }
+                                if (audioContext) audioContext.close();
+                                return;
+                            }
+                            requestAnimationFrame(checkBlow);
+                        }
+                        checkBlow();
+                    })
+                    .catch(err => {
+                        console.log("Микрофон не доступен:", err);
+                        // Если микрофон не разрешили, задуваем по клику на торт
+                        if(cakeEl) {
+                            cakeEl.addEventListener('click', () => blowOutCandles());
+                        }
+                    });
+            }
             
             function blowOutCandles() {
                 if(blowInstruction && blownMessage) {
                     blowInstruction.style.display = 'none';
                     blownMessage.style.display = 'block';
                 }
+                // Конфетти
                 for(let i=0; i<50; i++) {
                     let conf = document.createElement('div');
                     conf.innerText = ['🎉', '🎊', '✨', '💖', '🎈'][Math.floor(Math.random()*5)];
@@ -390,19 +413,25 @@
                 }
             }
             
-            if(cake) {
-                cake.addEventListener('click', blowOutCandles);
-            }
+            // Запускаем检测 микрофона, когда появится секция с тортом
+            const observer = new MutationObserver(() => {
+                const cakeSection = document.querySelector('.section-cake');
+                if(cakeSection && cakeSection.classList.contains('visible')) {
+                    startMicrophoneDetection();
+                    observer.disconnect();
+                }
+            });
+            observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+            
+            // Если кликнуть на инструкцию — тоже задуваем
             if(blowInstruction) {
-                blowInstruction.addEventListener('click', blowOutCandles);
+                blowInstruction.addEventListener('click', () => blowOutCandles());
             }
 
             // Кнопка повтора
             const replayBtn = document.getElementById('replay');
             if(replayBtn) {
-                replayBtn.addEventListener('click', () => {
-                    window.location.reload();
-                });
+                replayBtn.addEventListener('click', () => window.location.reload());
             }
 
             // Управление музыкой
